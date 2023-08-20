@@ -25,3 +25,15 @@ jobs:
         cli: latest           
     - name: Complile Raw EDN
       run: clojure -X:combine
+    - name: setup git config
+      run: |
+        # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+
+    - name: commit
+      run: |
+        # Stage the file, commit and push
+        git add edn/raw_data.edn
+        git commit -m "CI/CD - Updating raw data"
+        git push 
